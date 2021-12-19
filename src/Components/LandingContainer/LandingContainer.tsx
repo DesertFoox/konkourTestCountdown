@@ -57,21 +57,25 @@ const LandingContainer = () => {
           placeholder="مثلا 40 ثانیه"
         />
         <div className="flex justify-center  mt-2">
-          <Button
-            disabled={timer === 0 || optionTimer === 0 ? true : false}
-            className="text-white mr-2"
-            onClick={() => submitTest()}
-          >
-            شروع
-          </Button>
-          <Button
-            disabled={timer === 0 && optionTimer === 0 ? true : false}
-            color="bg-red-600"
-            className="text-white"
-            onClick={() => reset()}
-          >
-            باز نویسی
-          </Button>
+          {timer !== 0 && optionTimer !== 0 && (
+            <>
+              <Button
+                disabled={timer === 0 || optionTimer === 0 ? true : false}
+                className="text-white mr-2"
+                onClick={() => submitTest()}
+              >
+                شروع
+              </Button>
+              <Button
+                disabled={timer === 0 && optionTimer === 0 ? true : false}
+                color="bg-red-600"
+                className="text-white"
+                onClick={() => reset()}
+              >
+                باز نویسی
+              </Button>
+            </>
+          )}
         </div>
         {timeStamp && (
           <div className="flex justify-center items-center flex-col mt-5 w-72">
