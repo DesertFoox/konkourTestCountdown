@@ -7,13 +7,13 @@ import Button from "../Common/Button/Button";
 import Timestamp from "../Timestamp/Timestamp";
 
 const LandingContainer = () => {
-  const [timer, setTimer] = useState<number>(0);
-  const [optionTimer, setOptionTimer] = useState<number>(0);
+  const [timer, setTimer] = useState<string>("]");
+  const [optionTimer, setOptionTimer] = useState<string>("");
   const [timeStamp, setTimeStamp] = useState<boolean>(false);
 
   const submitTest = () => {
     setTimeStamp(false);
-    if (timer === 0 || optionTimer === 0) {
+    if (timer === "" || optionTimer === "") {
       setTimeStamp(false);
 
       toast.error("لطفا فیلد ها را کامل پر کنید", {
@@ -32,8 +32,8 @@ const LandingContainer = () => {
 
   const reset = () => {
     setTimeStamp(false);
-    setOptionTimer(0);
-    setTimer(0);
+    setOptionTimer("");
+    setTimer("");
   };
   return (
     <div className="container  mx-auto px-5">
@@ -44,49 +44,53 @@ const LandingContainer = () => {
         <Input
           type="number"
           value={timer}
-          onChange={(e) => setTimer(parseInt(e.target.value))}
+          onChange={(e) => setTimer(e.target.value)}
           label="مدت زمان را وارد کنید"
           placeholder="مثلا 30 دقیقه"
         />
         <Input
           type="text"
           value={optionTimer}
-          disabled={timer === 0 ? true : false}
-          onChange={(e) => setOptionTimer(parseInt(e.target.value))}
+          disabled={timer === "" ? true : false}
+          onChange={(e) => setOptionTimer(e.target.value)}
           label="مدت زمان برای هر گزینه از تست را وارد کنید"
           placeholder="مثلا 40 ثانیه"
         />
         <div className="flex justify-center  mt-2">
-          {timer !== 0 && optionTimer !== 0 && (
-            <>
-              <Button
-                disabled={timer === 0 || optionTimer === 0 ? true : false}
-                className="text-white mr-2"
-                onClick={() => submitTest()}
-              >
-                شروع
-              </Button>
-              <Button
-                disabled={timer === 0 && optionTimer === 0 ? true : false}
-                color="bg-red-600"
-                className="text-white"
-                onClick={() => reset()}
-              >
-                باز نویسی
-              </Button>
-            </>
-          )}
+          <>
+            <Button
+              disabled={timer === "" || optionTimer === "" ? true : false}
+              className="text-white mr-2"
+              color={"bg-green-700"}
+              disabledColor="bg-green-400"
+              onClick={() => submitTest()}
+            >
+              شروع
+            </Button>
+            <Button
+              disabled={timer === "" || optionTimer === "" ? true : false}
+              color="bg-red-700"
+              disabledColor={"bg-red-400"}
+              className="text-white"
+              onClick={() => reset()}
+            >
+              باز نویسی
+            </Button>
+          </>
         </div>
         {timeStamp && (
           <div className="flex justify-center items-center flex-col mt-5 w-72">
             <h2 className="mb-5" style={{ direction: "rtl" }}>
-              {" "}
               {timer} دقیقه مدت زمان آزمون
             </h2>
-            <Timestamp dur={timer} isComplete={false} isMinute />
+            <Timestamp dur={parseInt(timer)} isComplete={false} isMinute />
 
             <h2 className="mb-5">مدت زمان هر سوال</h2>
-            <Timestamp dur={optionTimer} isComplete isMinute={false} />
+            <Timestamp
+              dur={parseInt(optionTimer)}
+              isComplete
+              isMinute={false}
+            />
           </div>
         )}
       </div>

@@ -8,15 +8,12 @@ const Button: React.FC<IButtonProps> = ({
   onClick,
   color,
   disabled,
+  disabledColor,
 }): JSX.Element => {
   return (
     <button
       className={`h-10 px-5 ${
-        disabled
-          ? `bg-${color ? color : "green"}-400 ${
-              color === "bg-red-600" ? "bg-red-300" : "green"
-            }`
-          : `${color ? color : "bg-green-700"}`
+        disabled ? disabledColor : color
       }  transition-colors duration-150  rounded-lg focus:shadow-outline ${className}`}
       onClick={onClick}
       disabled={disabled}

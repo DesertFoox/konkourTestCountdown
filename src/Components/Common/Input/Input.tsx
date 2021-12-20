@@ -13,7 +13,7 @@ const Input: React.FC<IInputProps> = ({
 }): JSX.Element => {
   return (
     <>
-      <label className="block text-gray-500  font-bold text-right ">{label}</label>
+      <label className="block text-gray-500 mt-3 font-bold text-right ">{label}</label>
       <input
         type={type}
         disabled={disabled}

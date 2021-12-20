@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Yekan';
+   
+    src: url('./Assets/Fonts/Yekan.ttf');
+  }
+  
+  body{
+    font-family: "Yekan" !important;
+  }

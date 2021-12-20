@@ -3,6 +3,7 @@ interface IButtonProps {
   children: any;
   onClick?: (e?: any) => any;
   color?: string;
-  disabled?: boolean
+  disabled?: boolean;
+  disabledColor?: string;
 }
 export default IButtonProps;
